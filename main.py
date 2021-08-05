@@ -24,10 +24,10 @@ def run(args):
     com1_player = McsPlayer("MCS", com_stone, args.level * 1000)
     # com1_player = MinimaxThreadPlayer("PP", com_stone, PutPosEvaluator(), StoneNumEvaluator(), args.level, args.thread_num)
     # com1_player = MinimaxThreadPlayer("PPC-212", com_stone, PutPosCornerEvaluator(2,1,2), StoneNumEvaluator(), args.level, args.thread_num)
-    # com2_player = MinimaxThreadPlayer("Jinya", man_stone, JinyaEvaluator(), JinyaEvaluator(), args.level, args.thread_num)
-    man_player = HumanGUIPlayer(man_stone) if args.use_gui else HumanPlayer(man_stone)
-    # players = {com_stone: com1_player, man_stone: com2_player}
-    players = {com_stone: com1_player, man_stone: man_player}
+    com2_player = MinimaxThreadPlayer("Jinya", man_stone, JinyaEvaluator(), JinyaEvaluator(), args.level, args.thread_num)
+    # man_player = HumanGUIPlayer(man_stone) if args.use_gui else HumanPlayer(man_stone)
+    players = {com_stone: com1_player, man_stone: com2_player}
+    # players = {com_stone: com1_player, man_stone: man_player}
 
     game = GUIGame(players) if args.use_gui else ConsoleGame(players)
     game.play()
