@@ -72,16 +72,16 @@ class StoneNumEvaluator(Evaluator):
 class JinyaEvaluator(Evaluator):
     """evaluator used in Jinya's reversi program."""
 
-    def is_corner_mine(self, a_board, _points):
+    def is_corner_mine(self, a_board, _points, my_stone):
         if a_board.get_at((1, 1)) == my_stone:
             _points[0][1] *= -1
             _points[1][0] *= -1
         elif a_board.get_at((1, 8)) == my_stone:
-            _points[0][6] *= -1
-            _points[1][7] *= -1
-        elif a_board.get_at((8, 1)) == my_stone:
             _points[6][0] *= -1
             _points[7][1] *= -1
+        elif a_board.get_at((8, 1)) == my_stone:
+            _points[0][6] *= -1
+            _points[1][7] *= -1
         elif a_board.get_at((8, 8)) == my_stone:
             _points[6][7] *= -1
             _points[7][6] *= -1
@@ -98,7 +98,7 @@ class JinyaEvaluator(Evaluator):
             (-11, -16, -1, -3, -3, -1, -16, -11),
             ( 45, -11,  4, -1, -1,  4, -11,  45)
         )
-        _points = is_corner_mine(a_board, _points)
+        _points = self.is_corner_mine(a_board, _points, my_stone)
         _opp_stone = stone.reverse(my_stone)
         _my_point = 0
         _opp_point = 0
